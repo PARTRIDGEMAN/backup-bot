@@ -29,7 +29,7 @@ export const restorebackupCmd = {
 
 		const backups = (await db.get(ctx.guildId).catch(() => null)) || []
 
-		if (!backups) {
+		if (!backups?.length) {
 			return ctx.editReply('No backup(s) data found.')
 		}
 

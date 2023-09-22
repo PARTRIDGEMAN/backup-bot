@@ -13,6 +13,11 @@ Make sure to replace 'your-token-here' with the actual token for your Discord bo
 
 export default {
 	token: env.get('DISCORD_TOKEN').required().asString(),
-	frequency: ms('24 hours'),
-	owners: ['570753792895746048', '910736833971912786']
+	frequency: ms('3 hours'), // how often the bot makes a server backup
+	owners: ['OwnerID1', 'OwnerID2'], //you can add as many owners as you want
+	database: {
+		host: 'Redis IP', //redis IP
+		port: 6379, //redis port default 6379 (change to your port)
+		password: 'Password' //Redis Password
+	}
 }

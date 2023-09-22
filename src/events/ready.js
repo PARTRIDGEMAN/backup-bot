@@ -32,7 +32,11 @@ export const ready = async (client) => {
 				)
 			}
 
-			await db.push(guild.id, data)
+			const backups = (await db.get(guild.id).catch(() => null)) || []
+
+			backups.push(data)
+
+			await db.set(guild.id, backups.sort((a, b) => b.createdTimestamp - a.createdTimestamp).slice(0, 25))
 		}
 
 		await sleep(config.frequency)
